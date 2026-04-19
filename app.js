@@ -283,6 +283,15 @@ function handleNavigation(e) {
     hideSaleForm();
     closeModals();
     
+    // Close camera if open (from camera vision section)
+    if (typeof closeCamera === 'function') {
+        closeCamera();
+    }
+    if (typeof closeDetectedDataPreview === 'function') {
+        closeDetectedDataPreview();
+    }
+    document.getElementById('visionProcessing')?.classList.add('hidden');
+    
     // Show selected section
     const targetSection = document.getElementById(section);
     if (targetSection) {
@@ -718,7 +727,27 @@ function parseVcf(vcfContent) {
 
 function displayVcfContacts(contacts) {
     const contactsList = document.getElementById('vcfContactsList');
-    contactsList.innerHTML = contacts.map((contact, index) => `
+    
+    // Filter contacts that contain "Saloon" in their name (case-insensitive)
+    const filteredContacts = contacts.filter(contact => 
+        contact.name.toLowerCase().includes('saloon') || 
+        contact.name.toLowerCase().includes('salon') ||
+        contact.name.toLowerCase().includes('beauty') ||
+        contact.name.toLowerCase().includes('cosmetic')
+    );
+    
+    const displayedContacts = filteredContacts.length > 0 ? filteredContacts : contacts;
+    const isFiltered = filteredContacts.length > 0 && filteredContacts.length < contacts.length;
+    
+    let html = '';
+    
+    if (isFiltered) {
+        html += `<div class="vcf-filter-info">
+            <p>📌 Showing ${displayedContacts.length} contacts with "Saloon", "Salon", "Beauty", or "Cosmetic" in name out of ${contacts.length} total contacts</p>
+        </div>`;
+    }
+    
+    html += displayedContacts.map((contact, index) => `
         <div class="vcf-contact-item">
             <input type="checkbox" id="vcf-contact-${index}" checked>
             <div class="vcf-contact-info">
@@ -727,6 +756,8 @@ function displayVcfContacts(contacts) {
             </div>
         </div>
     `).join('');
+    
+    contactsList.innerHTML = html;
 }
 
 async function handleImportVcf() {
@@ -1148,11 +1179,17 @@ function showNotification(message, type = 'success') {
     
     // Optional: Add visual feedback
     const notification = document.createElement('div');
+    
+    let bgColor = '#4CAF50'; // success
+    if (type === 'error') bgColor = '#f44336';
+    else if (type === 'warning') bgColor = '#FF9800';
+    else if (type === 'info') bgColor = '#2196F3';
+    
     notification.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: ${type === 'error' ? '#f44336' : '#4CAF50'};
+        background: ${bgColor};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 8px;
@@ -1161,14 +1198,17 @@ function showNotification(message, type = 'success') {
         animation: slideIn 0.3s ease;
         max-width: 300px;
         word-wrap: break-word;
+        white-space: pre-wrap;
+        line-height: 1.5;
+        font-size: 0.9rem;
     `;
-    notification.textContent = message;
+    notification.innerHTML = message.replace(/\n/g, '<br>');
     document.body.appendChild(notification);
     
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
-    }, 3000);
+    }, 4000);
 }
 
 // Add notification animations

@@ -13,39 +13,55 @@
 - Low stock alerts
 - Real-time statistics
 
-### 2. 💄 Product Management
+### 2. � Camera Vision (NEW!)
+- **Auto-detect product lists from paper** using computer vision
+- Capture photos of product lists with:
+  - Customer/recipient name at the top
+  - Product names on the left
+  - Prices on the right
+- AI-powered OCR recognizes printed text in English and Hindi
+- **Auto-save new contacts and products** (skips duplicates)
+- Review and edit detected data before saving
+- **Smart notification**: "Set the stock of your newly registered products!"
+- Works with various paper formats and handwriting
+
+### 3. 💄 Product Management
 - Add, edit, and delete products
 - Track product prices and stock quantities
 - Automatic low stock warnings (< 10 units)
 - Quick stock status overview
+- Auto-import from camera vision detection
 
-### 3. 👥 Customer Management
+### 4. 👥 Customer Management
 - Add customers manually
 - **VCF Contact Import** - Bulk import contacts from .vcf files
+  - **Smart Filter**: Automatically shows contacts with "Saloon", "Salon", "Beauty", or "Cosmetic" in their names
+  - Reduces manual selection from 1300+ contacts to only relevant ones
 - View customer profiles
 - Track customer purchase history
 - Monitor total spending per customer
 - **Call customer** directly with one tap
+- Auto-import from camera vision detection
 
-### 4. 💳 Sales Recording
+### 5. 💳 Sales Recording
 - Record sales with multiple items
 - Auto-calculate total price
 - Update product stock automatically
 - Track customer purchase history
 - Store sales with timestamp
 
-### 5. ⚙️ User Profile
+### 6. ⚙️ User Profile
 - Store shop owner details
 - Save business name
 - Store contact information
 - Add shop address
 
-### 6. 💾 Data Management
+### 7. 💾 Data Management
 - **Backup** - Export all data as JSON file
 - **Restore** - Import previous backups
 - Secure local storage with IndexedDB
 
-### 7. 📱 PWA Features
+### 8. 📱 PWA Features
 - **Install on home screen** (All devices)
 - **Works completely offline** - No internet required
 - Fast, lightweight, and responsive

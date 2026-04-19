@@ -8,6 +8,9 @@
   "theme_color": "#2196F3",
   "orientation": "portrait-primary",
   "scope": "/Salestracking-app/",
+  "permissions": [
+    "camera"
+  ],
   "icons": [
     {
       "src": "icon.png",

@@ -58,6 +58,58 @@
                 </div>
             </section>
 
+            <!-- Camera Vision Section -->
+            <section id="cameraVision" class="section">
+                <h2>Detect Products From Paper</h2>
+                <p class="section-desc">📸 Use your camera to detect product lists from paper</p>
+                
+                <div class="section-controls">
+                    <button id="openCameraBtn" class="btn-primary">📷 Open Camera</button>
+                </div>
+
+                <!-- Camera Interface -->
+                <div id="cameraContainer" class="camera-container hidden">
+                    <div class="camera-preview-wrapper">
+                        <video id="cameraVideo" class="camera-video" autoplay playsinline></video>
+                        <canvas id="cameraCanvas" class="hidden"></canvas>
+                    </div>
+                    <div class="camera-controls">
+                        <button type="button" id="capturePhotoBtn" class="btn-primary">📸 Capture Photo</button>
+                        <button type="button" id="closeCameraBtn" class="btn-secondary">Close Camera</button>
+                    </div>
+                </div>
+
+                <!-- Vision Processing -->
+                <div id="visionProcessing" class="vision-processing hidden">
+                    <div class="processing-status">
+                        <div class="spinner"></div>
+                        <p id="processingText">Processing image with AI...</p>
+                    </div>
+                </div>
+
+                <!-- Detected Data Preview -->
+                <div id="detectedDataPreview" class="detected-data-preview hidden">
+                    <div class="preview-header">
+                        <h3>✅ Detected Information</h3>
+                        <button type="button" id="closePreviewBtn" class="btn-icon">×</button>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-section">
+                            <label>Customer/Recipient Name:</label>
+                            <input type="text" id="detectedCustomerName" class="preview-input" placeholder="Enter or edit customer name">
+                        </div>
+                        <div class="preview-section">
+                            <h4>Detected Products:</h4>
+                            <div id="detectedProductsList" class="detected-products-list"></div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="saveDetectedDataBtn" class="btn-primary">✓ Save All</button>
+                            <button type="button" id="cancelDetectedDataBtn" class="btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Products Section -->
             <section id="products" class="section">
                 <h2>Products</h2>
@@ -268,6 +320,10 @@
                 <span class="nav-icon">📊</span>
                 <span class="nav-label">Dashboard</span>
             </button>
+            <button class="nav-btn" data-section="cameraVision">
+                <span class="nav-icon">📷</span>
+                <span class="nav-label">Camera</span>
+            </button>
             <button class="nav-btn" data-section="products">
                 <span class="nav-icon">📦</span>
                 <span class="nav-label">Products</span>
@@ -387,6 +443,9 @@
     <!-- Scripts -->
     <script src="db.js"></script>
     <script src="app.js"></script>
+    <script src="camera-vision.js"></script>
+    <!-- Tesseract.js for OCR -->
+    <script async src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     
     <!-- Service Worker Registration -->
     <script>

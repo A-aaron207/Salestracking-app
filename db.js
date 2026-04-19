@@ -241,6 +241,20 @@ class CosmeticDB {
     }
 
     /**
+     * Get customer by name
+     */
+    async getCustomerByName(name) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['customers'], 'readonly');
+            const index = transaction.objectStore('customers').index('name');
+            const request = index.get(name);
+
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    /**
      * Update a customer
      */
     async updateCustomer(id, updates) {
