@@ -38,13 +38,14 @@ body {
     flex-direction: column;
     height: 100vh;
     max-width: 100%;
+    background: #fafafa;
 }
 
 .app-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    padding: var(--spacing);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    box-shadow: 0 2px 12px rgba(33, 150, 243, 0.15);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -58,8 +59,9 @@ body {
 }
 
 .header-content h1 {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -72,8 +74,13 @@ body {
 }
 
 .status-indicator {
-    font-size: 0.8rem;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4CAF50;
     animation: pulse 2s infinite;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 @keyframes pulse {
@@ -86,36 +93,66 @@ body {
 .app-nav {
     display: flex;
     gap: 0;
-    background-color: white;
-    border-bottom: 1px solid var(--border-color);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    padding: 0 0 max(env(safe-area-inset-bottom), 0px) 0;
 }
 
 .nav-btn {
     flex: 1;
-    min-width: 75px;
-    padding: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.75rem 0.5rem;
     border: none;
-    background: none;
-    color: var(--dark-color);
+    background: transparent;
+    color: #999;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    white-space: nowrap;
-    border-bottom: 3px solid transparent;
-    transition: all var(--transition);
+    transition: all 0.3s ease;
+    min-height: 60px;
+    position: relative;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    display: block;
+}
+
+.nav-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
 }
 
 .nav-btn:active,
 .nav-btn.active {
-    border-bottom-color: var(--primary-color);
     color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.08);
+}
+
+.nav-btn:active::before,
+.nav-btn.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-color);
 }
 
 .nav-btn:hover {
-    background-color: var(--light-color);
+    color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.05);
 }
 
 /* ========== MAIN CONTENT ========== */
@@ -124,8 +161,9 @@ body {
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: var(--spacing);
+    padding: 1rem;
     max-width: 100%;
+    padding-bottom: 80px;
 }
 
 .section {
@@ -177,23 +215,31 @@ body {
 .stat-card {
     background: white;
     padding: 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
     border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.12);
 }
 
 .stat-label {
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    font-weight: 600;
 }
 
 .stat-value {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--primary-color);
+    letter-spacing: -0.5px;
 }
 
 /* ========== FORMS ========== */
@@ -201,9 +247,9 @@ body {
 .form-container {
     background: white;
     padding: 1.5rem;
-    border-radius: var(--radius);
+    border-radius: 12px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .form-container.hidden {
@@ -278,37 +324,41 @@ body {
 
 button {
     border: none;
-    border-radius: var(--radius);
+    border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition);
+    transition: all 0.3s ease;
     padding: 0.75rem 1.5rem;
     white-space: nowrap;
+    letter-spacing: 0.3px;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
 }
 
 .btn-primary:active,
 .btn-primary:hover {
     background-color: #1976D2;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
 }
 
 .btn-secondary {
-    background-color: var(--light-color);
+    background-color: #f5f5f5;
     color: var(--dark-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .btn-secondary:active,
 .btn-secondary:hover {
-    background-color: #E8E8E8;
+    background-color: #e8e8e8;
     border-color: var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-danger {
@@ -359,18 +409,18 @@ button {
 
 .product-card {
     background: white;
-    border-radius: var(--radius);
+    border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     cursor: pointer;
-    transition: all var(--transition);
+    transition: all 0.3s ease;
     border: 2px solid transparent;
 }
 
 .product-card:active,
 .product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(33, 150, 243, 0.12);
 }
 
 .product-name {
@@ -429,17 +479,17 @@ button {
 .customer-card {
     background: white;
     padding: 1rem;
-    border-radius: var(--radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     cursor: pointer;
-    transition: all var(--transition);
+    transition: all 0.3s ease;
     border-left: 4px solid var(--primary-color);
 }
 
 .customer-card:active,
 .customer-card:hover {
     transform: translateX(2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.12);
 }
 
 .customer-name {
