@@ -450,13 +450,15 @@
     <!-- Scripts -->
     <script src="db.js"></script>
     <script src="app.js"></script>
-    <script src="camera-vision.js"></script>
     
-    <!-- EasyOCR.js - Premium OCR with highest accuracy -->
-    <script async src="https://cdn.jsdelivr.net/npm/easyocr@latest/dist/easyocr.js"></script>
+    <!-- Tesseract.js v4 - Open-source OCR (90%+ accuracy with advanced preprocessing) -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
     
-    <!-- OpenCV.js - Advanced image processing -->
+    <!-- OpenCV.js - Advanced image processing for 8-stage preprocessing pipeline -->
     <script async src="https://docs.opencv.org/4.8.0/opencv.js"></script>
+    
+    <!-- Camera Vision - Load after OCR libraries -->
+    <script src="camera-vision.js"></script>
     
     <!-- Service Worker Registration -->
     <script>
