@@ -266,7 +266,12 @@ function initializeEventListeners() {
 // ========== NAVIGATION ==========
 
 function handleNavigation(e) {
-    const section = e.target.getAttribute('data-section');
+    // Get the button element (handle clicks on span children too)
+    const button = e.target.closest('.nav-btn');
+    if (!button) return;
+    
+    const section = button.getAttribute('data-section');
+    if (!section) return;
     
     // Hide all sections
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -286,7 +291,7 @@ function handleNavigation(e) {
     
     // Update active nav button
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    e.target.classList.add('active');
+    button.classList.add('active');
     
     // Refresh content when switching sections
     if (section === 'dashboard') {

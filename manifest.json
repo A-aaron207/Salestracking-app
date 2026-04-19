@@ -2,12 +2,12 @@
   "name": "Cosmetic Zone Manager PRO",
   "short_name": "CZ Manager",
   "description": "Business management app for cosmetics shops - manage customers, products, and sales offline",
-  "start_url": "/index.html",
+  "start_url": "/Salestracking-app/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2196F3",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "/Salestracking-app/",
   "icons": [
     {
       "src": "icon.png",

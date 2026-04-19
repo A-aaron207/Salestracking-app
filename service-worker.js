@@ -1,12 +1,14 @@
 // Service Worker for Cosmetic Zone Manager PRO
+const BASE_PATH = '/Salestracking-app';
 const CACHE_NAME = 'cosmetic-zone-v1';
 const STATIC_ASSETS = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/db.js',
-    '/app.js',
-    '/manifest.json'
+    BASE_PATH + '/',
+    BASE_PATH + '/index.html',
+    BASE_PATH + '/styles.css',
+    BASE_PATH + '/db.js',
+    BASE_PATH + '/app.js',
+    BASE_PATH + '/manifest.json',
+    BASE_PATH + '/icon.png'
 ];
 
 // Install Service Worker
@@ -39,9 +41,15 @@ self.addEventListener('activate', event => {
 // Fetch Event - Network First, Cache Fallback
 self.addEventListener('fetch', event => {
     const { request } = event;
+    const url = new URL(request.url);
     
     // Only handle GET requests
     if (request.method !== 'GET') {
+        return;
+    }
+    
+    // Skip external requests and chrome extensions
+    if (!url.pathname.startsWith(BASE_PATH)) {
         return;
     }
 
@@ -63,6 +71,11 @@ self.addEventListener('fetch', event => {
                     .then(response => {
                         if (response) {
                             return response;
+                        }
+                        
+                        // Return index.html for navigation requests that fail
+                        if (request.mode === 'navigate') {
+                            return caches.match(BASE_PATH + '/index.html');
                         }
                         
                         // Return a fallback response for failed requests

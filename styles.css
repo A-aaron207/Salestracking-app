@@ -31,6 +31,30 @@ body {
     overflow-x: hidden;
 }
 
+/* ========== BACKDROP FILTER SUPPORT ========== */
+.stat-card, .form-container, .product-card, .customer-card, 
+.modal-content, .sale-item-row, .info-box, .language-settings, 
+.sale-summary, .welcome-modal-content {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .stat-card, .form-container, .product-card, .customer-card, 
+    .modal-content, .sale-item-row, .info-box, .language-settings, 
+    .sale-summary, .welcome-modal-content {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .stat-card, .form-container, .product-card, .customer-card, 
+    .modal-content, .sale-item-row, .info-box, .language-settings, 
+    .sale-summary, .welcome-modal-content {
+        background-color: #ffffff;
+    }
+}
+
 /* ========== APP LAYOUT ========== */
 
 .app-container {
@@ -42,13 +66,16 @@ body {
 }
 
 .app-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.95) 0%, rgba(100, 181, 246, 0.95) 100%);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     color: white;
     padding: 1.25rem;
-    box-shadow: 0 2px 12px rgba(33, 150, 243, 0.15);
+    box-shadow: 0 4px 20px rgba(33, 150, 243, 0.2);
     position: sticky;
     top: 0;
     z-index: 100;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .header-content {
@@ -93,9 +120,11 @@ body {
 .app-nav {
     display: flex;
     gap: 0;
-    background: white;
-    border-top: 1px solid #e0e0e0;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(220, 220, 220, 0.5);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
     position: sticky;
     bottom: 0;
     z-index: 100;
@@ -213,10 +242,12 @@ body {
 }
 
 .stat-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-left: 4px solid var(--primary-color);
     transition: all 0.3s ease;
 }
@@ -245,11 +276,13 @@ body {
 /* ========== FORMS ========== */
 
 .form-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 12px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .form-container.hidden {
@@ -408,13 +441,14 @@ button {
 }
 
 .product-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .product-card:active,
@@ -477,12 +511,15 @@ button {
 }
 
 .customer-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
     padding: 1rem;
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     transition: all 0.3s ease;
+    border-left: 4px solid var(--primary-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-left: 4px solid var(--primary-color);
 }
 
@@ -600,20 +637,23 @@ button {
 /* ========== SALE FORM ========== */
 
 .sale-item-row {
-    background: var(--light-color);
+    background: rgba(245, 245, 245, 0.7);
+    backdrop-filter: blur(10px);
     padding: 1rem;
     border-radius: var(--radius);
     margin-bottom: 1rem;
     display: grid;
-    grid-template-columns: 2fr 1fr auto auto;
+    grid-template-columns: 1fr;
     gap: 0.5rem;
-    align-items: flex-end;
+    align-items: stretch;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .sale-item-product-wrapper {
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
+    width: 100%;
 }
 
 .sale-item-product,
@@ -690,10 +730,12 @@ button {
 }
 
 .sale-summary {
-    background: var(--light-color);
+    background: rgba(245, 245, 245, 0.8);
+    backdrop-filter: blur(10px);
     padding: 1rem;
     border-radius: var(--radius);
     margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .summary-row {
@@ -731,7 +773,8 @@ button {
 }
 
 .modal-content {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
     margin-top: auto;
     border-radius: var(--radius) var(--radius) 0 0;
     padding: 1.5rem;
@@ -739,6 +782,7 @@ button {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .modal-close {
@@ -782,6 +826,9 @@ button {
     margin: 15vh auto;
     max-width: 500px;
     width: 90%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .welcome-modal-body {
@@ -844,11 +891,13 @@ button {
 /* ========== LANGUAGE SETTINGS ========== */
 
 .language-settings {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: var(--radius);
     margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .language-settings label {
@@ -994,10 +1043,12 @@ button {
 /* ========== UTILITY CLASSES ========== */
 
 .info-box {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: var(--radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .info-box p {
@@ -1048,10 +1099,6 @@ button {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .form-row {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
@@ -1073,6 +1120,11 @@ button {
     .header-content h1 {
         font-size: 1.5rem;
     }
+
+    .sale-item-row {
+        grid-template-columns: 2fr 1fr auto auto;
+        align-items: flex-end;
+    }
 }
 
 @media (min-width: 900px) {
@@ -1090,6 +1142,7 @@ button {
 
     .sale-item-row {
         grid-template-columns: 2fr 1fr 1fr auto;
+        align-items: flex-end;
     }
 }
 
