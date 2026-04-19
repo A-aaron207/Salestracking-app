@@ -1,0 +1,69 @@
+{
+  "name": "Cosmetic Zone Manager PRO",
+  "short_name": "CZ Manager",
+  "description": "Business management app for cosmetics shops - manage customers, products, and sales offline",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196F3",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View sales and business stats",
+      "url": "/index.html?section=dashboard",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232196F3' width='96' height='96'/><text x='50%' y='50%' font-size='50' fill='white' text-anchor='middle' dominant-baseline='central'>📊</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "New Sale",
+      "short_name": "Sale",
+      "description": "Record a new sale",
+      "url": "/index.html?section=sales",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232196F3' width='96' height='96'/><text x='50%' y='50%' font-size='50' fill='white' text-anchor='middle' dominant-baseline='central'>💳</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23F5F5F5' width='540' height='720'/><rect fill='%232196F3' width='540' height='100'/><text x='270' y='60' font-size='30' fill='white' text-anchor='middle' dominant-baseline='central' font-weight='bold'>CZ Manager</text><rect fill='white' y='100' width='540' height='620'/></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "prefer_related_applications": false
+}
