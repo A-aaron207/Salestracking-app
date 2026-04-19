@@ -14,16 +14,25 @@
 - Real-time statistics
 
 ### 2. � Camera Vision (NEW!)
-- **Auto-detect product lists from paper** using computer vision
+- **Advanced AI-powered product detection** from paper using PaddleOCR
 - Capture photos of product lists with:
   - Customer/recipient name at the top
   - Product names on the left
   - Prices on the right
-- AI-powered OCR recognizes printed text in English and Hindi
+- **Superior handwriting recognition** - Handles both printed and handwritten text
+- **Intelligent angle detection** - Automatically corrects skewed/rotated images
+- **Advanced image preprocessing** with OpenCV.js for enhanced clarity
+- **Confidence scoring** - Prioritizes high-confidence text detection
+- **Works with challenging conditions**:
+  - Dim lighting
+  - Angled photos
+  - Handwritten text
+  - Mixed printed/handwritten lists
+  - Complex document layouts
 - **Auto-save new contacts and products** (skips duplicates)
-- Review and edit detected data before saving
 - **Smart notification**: "Set the stock of your newly registered products!"
-- Works with various paper formats and handwriting
+- Works with multiple languages (English, Hindi, and more)
+- Runs completely offline on your device
 
 ### 3. 💄 Product Management
 - Add, edit, and delete products
