@@ -18,6 +18,13 @@
             <div class="header-content">
                 <h1>CZ Manager PRO</h1>
                 <div class="header-right">
+                    <div class="theme-selector">
+                        <button class="theme-btn active" data-theme="default" title="Default: Indigo & Pink">🎨</button>
+                        <button class="theme-btn" data-theme="vibrant" title="Vibrant: Purple & Orange">🌟</button>
+                        <button class="theme-btn" data-theme="cool" title="Cool: Cyan & Blue">❄️</button>
+                        <button class="theme-btn" data-theme="warm" title="Warm: Rose & Red">🔥</button>
+                    </div>
+                    <button id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode">🌙</button>
                     <span id="statusIndicator" class="status-indicator" title="Online/Offline status"></span>
                 </div>
             </div>
@@ -144,7 +151,7 @@
                 </div>
 
                 <!-- Products List -->
-                <div id="productsList" class="products-grid">
+                <div id="productsList" class="products-grid info-box products-empty">
                     <p class="empty-state">No products added yet</p>
                 </div>
             </section>
@@ -198,7 +205,7 @@
                 </div>
 
                 <!-- Customers List -->
-                <div id="customersList" class="customers-list">
+                <div id="customersList" class="customers-list info-box customers-empty">
                     <p class="empty-state">No customers added yet</p>
                 </div>
             </section>
@@ -248,7 +255,7 @@
 
                 <!-- Sales History -->
                 <h3>Recent Sales</h3>
-                <div id="salesList" class="sales-list">
+                <div id="salesList" class="sales-list info-box sales-empty">
                     <p class="empty-state">No sales recorded yet</p>
                 </div>
             </section>

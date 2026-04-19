@@ -102,6 +102,64 @@ function markAppAsLaunched() {
     localStorage.setItem('czm_launched', 'true');
 }
 
+// ========== THEME & DARK MODE ==========
+
+function initializeThemeToggle() {
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('czm_theme') || 'default';
+    const savedDarkMode = localStorage.getItem('czm_darkMode') === 'true';
+    
+    // Apply saved theme
+    applyTheme(savedTheme);
+    
+    // Apply dark mode
+    if (savedDarkMode) {
+        document.documentElement.classList.add('dark-mode');
+        updateDarkModeToggle(true);
+    }
+    
+    // Theme buttons
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    themeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const theme = e.target.dataset.theme;
+            applyTheme(theme);
+            localStorage.setItem('czm_theme', theme);
+            
+            // Update active state
+            themeButtons.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+        });
+    });
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            const isDarkMode = document.documentElement.classList.toggle('dark-mode');
+            localStorage.setItem('czm_darkMode', isDarkMode);
+            updateDarkModeToggle(isDarkMode);
+        });
+    }
+}
+
+function applyTheme(theme) {
+    const root = document.documentElement;
+    root.classList.remove('theme-default', 'theme-vibrant', 'theme-cool', 'theme-warm');
+    
+    if (theme !== 'default') {
+        root.classList.add(`theme-${theme}`);
+    }
+}
+
+function updateDarkModeToggle(isDarkMode) {
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) {
+        toggle.textContent = isDarkMode ? '☀️' : '🌙';
+        toggle.title = isDarkMode ? 'Light mode' : 'Dark mode';
+    }
+}
+
 function showWelcomeModal() {
     const welcomeModal = document.getElementById('welcomeModal');
     if (welcomeModal) {
@@ -162,6 +220,9 @@ function updateOnlineStatus() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        // Initialize theme and dark mode
+        initializeThemeToggle();
+        
         // Show welcome modal if first launch
         if (isFirstLaunch()) {
             showWelcomeModal();
